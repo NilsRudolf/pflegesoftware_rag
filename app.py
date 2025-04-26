@@ -76,15 +76,13 @@ if user_input:
         answer_text  = result["answer"]
         source_docs  = result["source_documents"]
 
-        # 2) score docs for UI
-        scored_docs = reranked_sources(user_input, top_k=len(source_docs))
-        score_map   = {d.page_content: s for d, s in scored_docs}
-        doc_tuples  = [(doc, score_map.get(doc.page_content, 999)) for doc in source_docs]
+        # 2) NO reranking needed!
+        doc_tuples = [(doc, 0) for doc in source_docs]
 
         # 3) console log
         print("\n=== Retrieved Documents ===")
         for i, (doc, sc) in enumerate(doc_tuples, 1):
-            print(f"\nDocument {i}  (Score: {sc})")
+            print(f"\nDocument {i}")
             print(doc.page_content)
             print("-" * 60)
 
@@ -94,6 +92,7 @@ if user_input:
             "bot":     answer_text,
             "sources": doc_tuples,
         })
+
 
 # ────────────────────────────────────────────────────────────────────────────────
 # RENDER CHAT HISTORY
