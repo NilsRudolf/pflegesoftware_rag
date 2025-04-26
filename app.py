@@ -68,7 +68,7 @@ qa_chain = ConversationalRetrievalChain.from_llm(
 # ──────────────────────────────────────────────────────────
 # MAIN UI
 # ──────────────────────────────────────────────────────────
-st.title("🧠 MeinPflegedienst Dokumentation Chatbot")
+st.title("🧠 Pflegedienst Software Assistent")
 
 if "chat_history_ui" not in st.session_state:
     st.session_state.chat_history_ui = []
