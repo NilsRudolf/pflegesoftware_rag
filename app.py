@@ -10,26 +10,25 @@ from langchain.memory import ConversationBufferMemory
 # ──────────────────────────────────────────────────────────
 st.set_page_config(page_title="Pflegedienst Chatbot mit Gedächtnis", page_icon="🧠")
 
-# ──────────────────────────────────────────────────────────
-# SIDEBAR: secure OpenAI key input & validation
-# ──────────────────────────────────────────────────────────
+# ── SIDEBAR: OpenAI key ──────────────────────────────────
 st.sidebar.title("🔑 OpenAI-API-Key")
 
 api_key_input = st.sidebar.text_input(
-    "Bitte gültigen OpenAI-Key eingeben (beginnt mit 'sk-')",
+    "Bitte gültigen OpenAI-Key eingeben",
     type="password",
     placeholder="sk-...",
 )
 
-# simple ASCII+pattern check (prevents the “UnicodeEncodeError”)
 def valid_openai_key(key: str) -> bool:
-    return bool(re.fullmatch(r"sk-[A-Za-z0-9]{20,}", key))
+    key = key.strip()
+    return key.startswith("sk-") and len(key) >= 24 and all(32 <= ord(c) < 127 for c in key)
 
 if api_key_input and valid_openai_key(api_key_input):
-    os.environ["OPENAI_API_KEY"] = api_key_input
+    os.environ["OPENAI_API_KEY"] = api_key_input.strip()
 elif not os.getenv("OPENAI_API_KEY"):
-    st.sidebar.error("Kein gültiger OpenAI-Key gesetzt! Bitte einfügen und ENTER drücken.")
+    st.sidebar.error("Ungültiger Key – bitte korrekt einfügen.")
     st.stop()
+
 
 # ──────────────────────────────────────────────────────────
 # Embeddings & VectorStore
