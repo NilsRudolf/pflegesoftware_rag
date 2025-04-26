@@ -16,7 +16,7 @@ from langchain.prompts.chat import (
 # Streamlit-Page-Config
 # ───────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Pflegedienst Chatbot mit Gedächtnis",
+    page_title="Pflegedienst Software Assistent",
     page_icon="🧠",
 )
 
