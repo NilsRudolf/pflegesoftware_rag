@@ -46,7 +46,7 @@ elif not os.getenv("OPENAI_API_KEY"):
 # ───────────────────────────────────────────────────────
 SYSTEM_MSG = (
     "Du bist ein hilfsbereiter Assistent für die Pflegedienst-Software. "
-    "Antworte immer auf Deutsch, kurz und präzise, mit Aufzählungen wenn sinnvoll. Wenn du die Antwort nicht weißt, geb es offen an."
+    "Antworte immer auf Deutsch, kurz und präzise, mit Aufzählungen wenn sinnvoll. Wenn die Dokumentation die Information nicht hergibt, gebe es offen an."
 )
 
 # ───────────────────────────────────────────────────────
